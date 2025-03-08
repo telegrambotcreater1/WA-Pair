@@ -111,21 +111,21 @@ router.get("/", async (req, res) => {
         }
       });
     } catch (err) {
-      exec("pm2 restart FILMPUBLISHER.LK");/* Change Code*/
-      console.log("Service Restarted");/* Change Code*/
-      RobinPair();
-      await removeFile("./session");
-      if (!res.headersSent) {
-        await res.send({ code: "Service Unavailable" });/* Change Code*/
+          exec("pm2 restart Robin-md");
+          console.log("service restarted");
+          RobinPair();
+          await removeFile("./session");
+          if (!res.headersSent) {
+            await res.send({ code: "Service Unavailable" });
+          }
+        }
       }
-    }
-  }
-  return await RobinPair();
-});
-
-process.on("uncaughtException", function (err) {
-  console.log("Caught exception: " + err);
-  exec("pm2 restart FILMPUBLISHER.LK"); /* Change Code*/
-});
-
-module.exports = router;
+      return await RobinPair();
+    });
+    
+    process.on("uncaughtException", function (err) {
+      console.log("Caught exception: " + err);
+      exec("pm2 restart Robin");
+    });
+    
+    module.exports = router;
